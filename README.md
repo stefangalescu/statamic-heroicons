@@ -2,7 +2,7 @@
 
 ![Banner](banner.png)
 
-## statamic-heroicons
+## Statamic Heroicons
 
 <!-- /statamic:hide -->
 
