@@ -42,7 +42,7 @@ abstract class TestCase extends OrchestraTestCase
         parent::resolveApplicationConfiguration($app);
 
         $configs = [
-            'assets', 'cp', 'forms', 'static_caching',
+            'antlers', 'assets', 'cp', 'forms', 'static_caching',
             'sites', 'stache', 'system', 'users',
         ];
 
@@ -50,6 +50,7 @@ abstract class TestCase extends OrchestraTestCase
             $app['config']->set("statamic.$config", require(__DIR__ . "/../vendor/statamic/cms/config/{$config}.php"));
         }
 
+        $app['config']->set('statamic.antlers.version', 'runtime');
         $app['config']->set('statamic.users.repository', 'file');
     }
 }
