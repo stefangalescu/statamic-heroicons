@@ -1,7 +1,7 @@
 {
     "name": "stefan-galescu/statamic-heroicons",
-    "description": "",
-    "license": "proprietary",
+    "description": "Use and easily customize Heroicons in your Statamic templates",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "StefanGalescu\\Heroicons\\": "src"
