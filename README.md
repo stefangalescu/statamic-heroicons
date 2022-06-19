@@ -46,9 +46,9 @@ If you need additional options, you can also publish the [blade-ui-kit/blade-her
 {{ heroicon :variant="variant" :icon="icon" }}
 ```
 
-Apart from a couple of reserved prop names (`as`, `scope`, `variant`, `icon`), any prop you pass (e.g. `class`, `style`, `aria-hidden` etc.) will be added to the root SVG element.
+Apart from a couple of reserved prop names (`as`, `scope`, `variant`, `icon`), any prop you pass (e.g. `class`, `style`, `aria-hidden` etc.) to the tag will be added to the root SVG element.
 
-The `{{ heroicon }}` also allows you to pass dynamically binded attributes like you would use in a JavaScript framework like Alpine.js. The only gotcha is that you cannot use the shorthand syntax `:class="condition ? 'text-red-500' : 'text-green-500'"`. You must use the full binding (e.g. `x-bind:class`, `v-bind:class`). Example:
+The `{{ heroicon }}` tag also allows you to pass dynamically binded attributes like you would use in a JavaScript framework like Alpine.js. The only gotcha is that you cannot use the shorthand syntax `:class="condition ? 'text-red-500' : 'text-green-500'"`. You must use the full binding (e.g. `x-bind:class`, `v-bind:class`). Example:
 
 ```antlers
 {{ heroicon:solid:menu class="w-5 h-5" title="Main menu" }}
