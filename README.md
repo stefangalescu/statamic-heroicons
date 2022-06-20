@@ -1,6 +1,6 @@
 <!-- statamic:hide -->
 
-![Banner](banner.png)
+![Banner](banner.jpg)
 
 ## Statamic Heroicons
 
