@@ -16,7 +16,7 @@ class HeroiconTest extends TestCase
 
     public function render(string $variant, string $icon, array $attrs = [])
     {
-        return Statamic::tag('heroicon')->params(['variant' => $variant, 'icon' => $icon, ...$attrs])->fetch();
+        return Statamic::tag('heroicon')->params(array_merge(['variant' => $variant, 'icon' => $icon], $attrs))->fetch();
     }
 
     public function getSvgAsset(string $variant, string $icon)
