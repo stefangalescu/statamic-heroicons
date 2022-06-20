@@ -1,5 +1,5 @@
 {
-    "name": "stefan-galescu/statamic-heroicons",
+    "name": "stefangalescu/statamic-heroicons",
     "description": "Use and easily customize Heroicons in your Statamic templates",
     "license": "MIT",
     "autoload": {

@@ -23,13 +23,13 @@ Apart from the requirements above, it is required that you use Statamic's new Ru
 First, require `statamic-heroicons` as a Composer dependency:
 
 ```
-composer require stefan-galescu/statamic-heroicons
+composer require stefangalescu/statamic-heroicons
 ```
 
 Optionally, publish the config file and anything else, with this command:
 
 ```
-php artisan vendor:publish --tag="stefan-galescu/statamic-heroicons"
+php artisan vendor:publish --tag="stefangalescu/statamic-heroicons"
 ```
 
 If you need additional options, you can also publish the [blade-ui-kit/blade-heroicons](https://github.com/blade-ui-kit/blade-heroicons) config. Make sure to also look into the [icon caching](https://github.com/blade-ui-kit/blade-icons#caching) feature provided by [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons).
@@ -66,14 +66,20 @@ return [
 ];
 ```
 
-## Sponsor Stefan
+### Testing
 
-This addon is open-source, meaning anyone can use this addon in their sites for **free**!
-
-However, maintaining and developing new features for open-source projects can take quite a bit of time. If you're using `statamic-heroicons in` your production environment, please [consider sponsoring me](https://github.com/sponsors/stefan-galescu) for a couple dollars a month.
+```bash
+composer test
+```
 
 ## Security
 
 Only the latest version of `statamic-heroicons` will receive security updates if a vulnerability is found.
 
 If you discover a security vulnerability, please report it to Stefan Galescu straight away, [via email](mailto:stefan.galescu@gmail.com). Please don't report security issues through GitHub Issues.
+
+## Sponsor Stefan
+
+This addon is open-source, meaning anyone can use this addon in their sites for **free**!
+
+However, maintaining and developing new features for open-source projects can take quite a bit of time. If you're using `statamic-heroicons in` your production environment, please [consider sponsoring me](https://github.com/sponsors/stefangalescu) for a couple dollars a month.

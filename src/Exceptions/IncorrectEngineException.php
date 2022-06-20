@@ -13,7 +13,7 @@ class IncorrectEngineException extends Exception implements ProvidesSolution
 
     public function __construct()
     {
-        $this->message = 'The `stefan-galescu/statamic-heroicons` addon requires the `runtime` Antlers engine.';
+        $this->message = 'The `stefangalescu/statamic-heroicons` addon requires the `runtime` Antlers engine.';
     }
 
     public function getSolution(): Solution
