@@ -74,4 +74,4 @@ If you discover a security vulnerability, please report it to Stefan Galescu str
 
 This addon is open-source, meaning anyone can use this addon in their sites for **free**!
 
-However, maintaining and developing new features for open-source projects can take quite a bit of time. If you're using `statamic-heroicons in` your production environment, please [consider sponsoring me](https://github.com/sponsors/stefangalescu) for a couple dollars a month.
+However, maintaining and developing new features for open-source projects can take quite a bit of time. If you're using `statamic-heroicons` in your production environment, please [consider sponsoring me](https://github.com/sponsors/stefangalescu) for however you consider to be a fair amount.
