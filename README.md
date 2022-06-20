@@ -28,13 +28,7 @@ First, require `statamic-heroicons` as a Composer dependency:
 composer require stefangalescu/statamic-heroicons
 ```
 
-Optionally, publish the config file and anything else, with this command:
-
-```
-php artisan vendor:publish --tag="stefangalescu/statamic-heroicons"
-```
-
-If you need additional options, you can also publish the [blade-ui-kit/blade-heroicons](https://github.com/blade-ui-kit/blade-heroicons) config. Make sure to also look into the [icon caching](https://github.com/blade-ui-kit/blade-icons#caching) feature provided by [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons).
+If you need additional options, you can publish the [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons) config. Make sure to also look into the [icon caching](https://github.com/blade-ui-kit/blade-icons#caching) feature provided by [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons).
 
 ### Usage
 
