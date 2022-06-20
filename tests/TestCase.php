@@ -2,6 +2,8 @@
 
 namespace StefanGalescu\Heroicons\Tests;
 
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use BladeUI\Icons\BladeIconsServiceProvider;
 use StefanGalescu\Heroicons\ServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Statamic\Extend\Manifest;
@@ -15,6 +17,8 @@ abstract class TestCase extends OrchestraTestCase
         return [
             StatamicServiceProvider::class,
             ServiceProvider::class,
+            BladeIconsServiceProvider::class,
+            BladeHeroiconsServiceProvider::class,
         ];
     }
 
@@ -30,8 +34,8 @@ abstract class TestCase extends OrchestraTestCase
         parent::getEnvironmentSetUp($app);
 
         $app->make(Manifest::class)->manifest = [
-            'stefan-galescu/statamic-heroicons' => [
-                'id' => 'stefan-galescu/statamic-heroicons',
+            'stefangalescu/statamic-heroicons' => [
+                'id' => 'stefangalescu/statamic-heroicons',
                 'namespace' => 'StefanGalescu\\Heroicons',
             ],
         ];
