@@ -37,7 +37,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon }} tag.
      *
-     * @return string|array
+     * @return string
      */
     public function index()
     {
@@ -47,7 +47,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:outline }} tag.
      *
-     * @return string|array
+     * @return string
      */
     public function outline()
     {
@@ -57,7 +57,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:solid }} tag.
      *
-     * @return string|array
+     * @return string
      */
     public function solid()
     {
@@ -67,7 +67,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:{variant}:{icon} }} tag.
      *
-     * @return string|array
+     * @return string
      */
     public function wildcard(string $tag)
     {
