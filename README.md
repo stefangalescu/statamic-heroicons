@@ -2,7 +2,7 @@
 
 ![Banner](banner.jpg)
 
-## Statamic Heroicons
+# Statamic Heroicons
 
 <!-- /statamic:hide -->
 
@@ -18,7 +18,9 @@ For a full list of available icons see [the SVG directory](https://github.com/bl
 
 Apart from the requirements above, it is required that you use Statamic's new Runtime Antlers engine. Read more about it and how to enable it in [Statamic's official documentation](https://statamic.dev/new-antlers-parser#about).
 
-## Installation
+## Documentation
+
+### Installation
 
 First, require `statamic-heroicons` as a Composer dependency:
 
@@ -34,7 +36,7 @@ php artisan vendor:publish --tag="stefangalescu/statamic-heroicons"
 
 If you need additional options, you can also publish the [blade-ui-kit/blade-heroicons](https://github.com/blade-ui-kit/blade-heroicons) config. Make sure to also look into the [icon caching](https://github.com/blade-ui-kit/blade-icons#caching) feature provided by [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons).
 
-## Usage
+### Usage
 
 ```antlers
 {{ heroicon:solid:menu }}
@@ -52,18 +54,8 @@ The `{{ heroicon }}` tag also allows you to pass dynamically binded attributes l
 
 ```antlers
 {{ heroicon:solid:menu class="w-5 h-5" title="Main menu" }}
-```
 
-## Documentation
-
-### Configuration
-
-This addon provides its own configuration file. You can use this to configure the API keys and other options.
-
-```php
-return [
-    //
-];
+{{ heroicon:solid:menu class="w-5 h-5" x-bind:class="condition ? 'text-red-500' : 'text-green-500'" }}
 ```
 
 ### Testing
