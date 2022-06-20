@@ -11,24 +11,12 @@ class ServiceProvider extends AddonServiceProvider
         \StefanGalescu\Heroicons\Tags\Heroicon::class,
     ];
 
-    public function register(): void
-    {
-        $antlersVersion = config('statamic.antlers.version');
-
-        if ($antlersVersion !== 'runtime') {
-            throw new IncorrectEngineException();
-        }
-
-        $this->registerConfig();
-    }
-
     public function bootAddon()
     {
-        //
-    }
+        $antlersEngine = config('statamic.antlers.version');
 
-    public function registerConfig(): void
-    {
-        $this->mergeConfigFrom(__DIR__ . '/../config/statamic-heroicons.php', 'statamic-heroicons');
+        if ($antlersEngine !== 'runtime') {
+            throw new IncorrectEngineException();
+        }
     }
 }
