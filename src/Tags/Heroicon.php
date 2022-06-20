@@ -11,45 +11,27 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    private function getClassPrefix(string $variant)
-    {
-        return 'heroicon-' . ($variant === 'outline' ? 'outline' : 'solid');
-    }
-
-    private function getClasses(string $variant)
-    {
-        $classPrefix = $this->getClassPrefix($variant);
-        $staticClasses = Str::start($this->params->get('class', ''), $classPrefix . ' ');
-        $dynamicClasses = $this->params['x-bind:class'] ?? $this->params['v-bind:class'] ?? null;
-
-        return [
-            'static' => $staticClasses,
-            'dynamic' => $dynamicClasses,
-        ];
-    }
-
-    private function getHtml(string $variant, $icon, Collection $attrs)
+    private function renderBladeToHtml(string $variant, $icon, Collection $attrs)
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
             return $key . '=' . '"' . $parsedValue . '"';
         })->join(' ');
 
-        return '<x-heroicon-' . $variant[0] . '-' . $icon . ' ' . $attrsString .  ' />';
+        $blade = '<x-heroicon-' . $variant[0] . '-' . $icon . ' ' . $attrsString .  ' />';
+        $component = Blade::compileString($blade);
+
+        return Blade::render($component);
     }
 
-    private function render(string $variant = null, string $icon = null, array $classes = null)
+    private function render(string $variant = null, string $icon = null)
     {
         $variant = $variant ?? Str::lower($this->params->get('variant'));
         $icon = $icon ?? Str::lower($this->params->get('icon'));
-        $classes = $classes ?? $this->getClasses($variant);
 
         $attrs = $this->params->except(['as', 'scope', 'variant', 'icon']);
 
-        $html = $this->getHtml($variant, $icon, $attrs);
-        $component = Blade::compileString($html);
-
-        return Blade::render($component);
+        return $this->renderBladeToHtml($variant, $icon, $attrs);
     }
 
     /**
