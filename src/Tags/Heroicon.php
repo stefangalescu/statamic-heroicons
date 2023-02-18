@@ -46,6 +46,16 @@ class Heroicon extends Tags
     }
 
     /**
+     * The {{ heroicon:mini }} tag.
+     *
+     * @return string
+     */
+    public function mini()
+    {
+        return $this->render('mini');
+    }
+
+    /**
      * The {{ heroicon:outline }} tag.
      *
      * @return string
