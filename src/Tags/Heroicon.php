@@ -15,10 +15,11 @@ class Heroicon extends Tags
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
-            return $key . '=' . '"' . $parsedValue . '"';
+
+            return $key.'='.'"'.$parsedValue.'"';
         })->join(' ');
 
-        $blade = '<x-heroicon-' . $variant[0] . '-' . $icon . ' ' . $attrsString .  ' />';
+        $blade = '<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />';
         $component = Blade::compileString($blade);
 
         return Blade::render($component);

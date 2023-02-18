@@ -2,10 +2,9 @@
 
 namespace StefanGalescu\Heroicons\Tests;
 
-use Statamic\Statamic;
-
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertStringContainsString;
+use Statamic\Statamic;
 
 class HeroiconTest extends TestCase
 {
@@ -21,7 +20,7 @@ class HeroiconTest extends TestCase
 
     public function getSvgAsset(string $variant, string $icon)
     {
-        return file_get_contents(__DIR__ . '/../vendor/blade-ui-kit/blade-heroicons/resources/svg/' . $variant[0] . '-' . $icon . '.svg');
+        return file_get_contents(__DIR__.'/../vendor/blade-ui-kit/blade-heroicons/resources/svg/'.$variant[0].'-'.$icon.'.svg');
     }
 
     /** @test */
