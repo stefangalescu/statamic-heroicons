@@ -36,7 +36,7 @@
     },
     "scripts": {
         "lint": [
-            "php-cs-fixer fix ./src"
+            "./vendor/bin/pint"
         ],
         "test": [
             "php -d memory_limit=-1 -d max_execution_time=0 ./vendor/bin/phpunit"
