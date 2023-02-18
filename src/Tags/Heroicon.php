@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace StefanGalescu\Heroicons\Tags;
 
 use Illuminate\Support\Collection;
@@ -11,20 +13,18 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    private function renderBladeToHtml(string $variant, $icon, Collection $attrs)
+    private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): string
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
-            return $key . '=' . '"' . $parsedValue . '"';
+
+            return $key.'='.'"'.$parsedValue.'"';
         })->join(' ');
 
-        $blade = '<x-heroicon-' . $variant[0] . '-' . $icon . ' ' . $attrsString .  ' />';
-        $component = Blade::compileString($blade);
-
-        return Blade::render($component);
+        return Blade::render('<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />');
     }
 
-    private function render(string $variant = null, string $icon = null)
+    private function render(string $variant = null, string|null $icon = null): string
     {
         $variant = $variant ?? Str::lower($this->params->get('variant'));
         $icon = $icon ?? Str::lower($this->params->get('icon'));
@@ -36,40 +36,40 @@ class Heroicon extends Tags
 
     /**
      * The {{ heroicon }} tag.
-     *
-     * @return string
      */
-    public function index()
+    public function index(): string
     {
         return $this->render();
     }
 
     /**
-     * The {{ heroicon:outline }} tag.
-     *
-     * @return string
+     * The {{ heroicon:mini }} tag.
      */
-    public function outline()
+    public function mini(): string
+    {
+        return $this->render('mini');
+    }
+
+    /**
+     * The {{ heroicon:outline }} tag.
+     */
+    public function outline(): string
     {
         return $this->render('outline');
     }
 
     /**
      * The {{ heroicon:solid }} tag.
-     *
-     * @return string
      */
-    public function solid()
+    public function solid(): string
     {
         return $this->render('solid');
     }
 
     /**
      * The {{ heroicon:{variant}:{icon} }} tag.
-     *
-     * @return string
      */
-    public function wildcard(string $tag)
+    public function wildcard(string $tag): string
     {
         [$variant, $icon] = Str::of($tag)->split('/:/')->toArray();
         $icon = Str::kebab($icon);

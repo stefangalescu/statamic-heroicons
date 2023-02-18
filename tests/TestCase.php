@@ -4,21 +4,21 @@ namespace StefanGalescu\Heroicons\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
-use StefanGalescu\Heroicons\ServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Statamic\Extend\Manifest;
 use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
+use StefanGalescu\Heroicons\ServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
     protected function getPackageProviders($app)
     {
         return [
+            BladeHeroiconsServiceProvider::class,
+            BladeIconsServiceProvider::class,
             StatamicServiceProvider::class,
             ServiceProvider::class,
-            BladeIconsServiceProvider::class,
-            BladeHeroiconsServiceProvider::class,
         ];
     }
 
@@ -51,7 +51,7 @@ abstract class TestCase extends OrchestraTestCase
         ];
 
         foreach ($configs as $config) {
-            $app['config']->set("statamic.$config", require(__DIR__ . "/../vendor/statamic/cms/config/{$config}.php"));
+            $app['config']->set("statamic.$config", require(__DIR__."/../vendor/statamic/cms/config/{$config}.php"));
         }
 
         $app['config']->set('statamic.antlers.version', 'runtime');

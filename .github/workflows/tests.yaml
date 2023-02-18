@@ -2,39 +2,28 @@ name: Test Suite
 
 on:
   push:
+    branches:
+      - main
+      - '*.x'
   pull_request:
 
 jobs:
-  php_tests:
-    runs-on: ${{ matrix.os }}
+  tests:
+    runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: true
       matrix:
-        php: [8.1, 8.0, 7.4]
-        laravel: [9.*, 8.*]
-        statamic: [^3.3]
+        php: [8.1, 8.2]
+        laravel: [9.*]
+        statamic: [^3.3, ^3.4]
         os: [ubuntu-latest]
-        include:
-          - laravel: 9.*
-            framework: ^9.1.0
-            testbench: 7.*
-          - laravel: 8.*
-            framework: ^8.24.0
-            testbench: 6.*
-        exclude:
-          - laravel: 9.*
-            statamic: ^3.2
-          - laravel: 9.*
-            php: 7.4
 
-    name: ${{ matrix.php }} - ${{ matrix.statamic }} - ${{ matrix.laravel }}
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Statamic ${{ matrix.statamic }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
-
-      - name: Delete composer.lock
-        run: rm composer.lock
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -44,8 +33,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.framework }}" "statamic/cms:${{ matrix.statamic }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer install --no-interaction
+          composer require "laravel/framework:${{ matrix.laravel }}" "statamic/cms:${{ matrix.statamic }}" --prefer-dist --no-interaction --no-update
+          composer install --prefer-dist --no-interaction
 
-      - name: Run PHPUnit
+      - name: Lint
+        run: composer lint -- --test
+
+      - name: Test
         run: composer test
