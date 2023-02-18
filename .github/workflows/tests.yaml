@@ -16,7 +16,7 @@ jobs:
       matrix:
         php: ['8.0', 8.1, 8.2]
         laravel: [9.*]
-        statamic: [3.3, 3.4]
+        statamic: [^3.3, ^3.4]
         os: [ubuntu-latest]
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Statamic ${{ matrix.statamic }}
@@ -33,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "statamic/cms:${{ matrix.statamic }}" "orchestra/testbench:7.*" --prefer-dist --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "statamic/cms:${{ matrix.statamic }}" --prefer-dist --no-interaction --no-update
           composer install --prefer-dist --no-interaction
 
       - name: Lint
