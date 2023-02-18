@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace StefanGalescu\Heroicons\Tags;
 
 use Illuminate\Support\Collection;
@@ -11,7 +13,7 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    private function renderBladeToHtml(string $variant, $icon, Collection $attrs): string
+    private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): string
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
@@ -19,13 +21,10 @@ class Heroicon extends Tags
             return $key.'='.'"'.$parsedValue.'"';
         })->join(' ');
 
-        $blade = '<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />';
-        $component = Blade::compileString($blade);
-
-        return Blade::render($component);
+        return Blade::render('<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />');
     }
 
-    private function render(string $variant = null, string $icon = null): string
+    private function render(string $variant = null, string|null $icon = null): string
     {
         $variant = $variant ?? Str::lower($this->params->get('variant'));
         $icon = $icon ?? Str::lower($this->params->get('icon'));
