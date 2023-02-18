@@ -11,7 +11,7 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    private function renderBladeToHtml(string $variant, $icon, Collection $attrs)
+    private function renderBladeToHtml(string $variant, $icon, Collection $attrs): string
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
@@ -25,7 +25,7 @@ class Heroicon extends Tags
         return Blade::render($component);
     }
 
-    private function render(string $variant = null, string $icon = null)
+    private function render(string $variant = null, string $icon = null): string
     {
         $variant = $variant ?? Str::lower($this->params->get('variant'));
         $icon = $icon ?? Str::lower($this->params->get('icon'));
@@ -37,50 +37,40 @@ class Heroicon extends Tags
 
     /**
      * The {{ heroicon }} tag.
-     *
-     * @return string
      */
-    public function index()
+    public function index(): string
     {
         return $this->render();
     }
 
     /**
      * The {{ heroicon:mini }} tag.
-     *
-     * @return string
      */
-    public function mini()
+    public function mini(): string
     {
         return $this->render('mini');
     }
 
     /**
      * The {{ heroicon:outline }} tag.
-     *
-     * @return string
      */
-    public function outline()
+    public function outline(): string
     {
         return $this->render('outline');
     }
 
     /**
      * The {{ heroicon:solid }} tag.
-     *
-     * @return string
      */
-    public function solid()
+    public function solid(): string
     {
         return $this->render('solid');
     }
 
     /**
      * The {{ heroicon:{variant}:{icon} }} tag.
-     *
-     * @return string
      */
-    public function wildcard(string $tag)
+    public function wildcard(string $tag): string
     {
         [$variant, $icon] = Str::of($tag)->split('/:/')->toArray();
         $icon = Str::kebab($icon);
