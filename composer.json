@@ -26,7 +26,7 @@
     "require": {
         "php": "^8.0 || ^8.1 || ^8.2",
         "blade-ui-kit/blade-heroicons": "^2.1",
-        "statamic/cms": "3.3.*"
+        "statamic/cms": "3.3.* || 3.4.*"
     },
     "require-dev": {
         "facade/ignition-contracts": "^1.0",
