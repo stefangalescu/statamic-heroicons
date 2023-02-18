@@ -27,7 +27,7 @@ class HeroiconTest extends TestCase
     public function can_render_heroicon_using_outline_variant()
     {
         $variant = 'outline';
-        $icon = 'menu';
+        $icon = 'bars-3';
 
         $render = $this->render($variant, $icon);
         $svg = $this->getSvgAsset($variant, $icon);
@@ -39,7 +39,19 @@ class HeroiconTest extends TestCase
     public function can_render_heroicon_using_solid_variant()
     {
         $variant = 'solid';
-        $icon = 'menu';
+        $icon = 'bars-3';
+
+        $render = $this->render($variant, $icon);
+        $svg = $this->getSvgAsset($variant, $icon);
+
+        assertEquals(trim($render), trim($svg));
+    }
+
+    /** @test */
+    public function can_render_heroicon_using_mini_variant()
+    {
+        $variant = 'mini';
+        $icon = 'bars-3';
 
         $render = $this->render($variant, $icon);
         $svg = $this->getSvgAsset($variant, $icon);
@@ -50,7 +62,7 @@ class HeroiconTest extends TestCase
     /** @test */
     public function can_add_attributes_to_svg()
     {
-        $render = $this->render('outline', 'menu', ['class' => 'w-6 h-6', 'title="Main menu"']);
+        $render = $this->render('outline', 'bars-3', ['class' => 'w-6 h-6', 'title="Main menu"']);
 
         assertStringContainsString('class="w-6 h-6"', $render);
         assertStringContainsString('title="Main menu"', $render);
@@ -59,7 +71,7 @@ class HeroiconTest extends TestCase
     /** @test */
     public function can_add_dynamically_binded_attributes_to_svg()
     {
-        $render = $this->render('outline', 'menu', ['x-bind:class' => "true ? 'w-6 h-6' : 'w-5 h-5'"]);
+        $render = $this->render('outline', 'bars-3', ['x-bind:class' => "true ? 'w-6 h-6' : 'w-5 h-5'"]);
 
         assertStringContainsString('x-bind:class="true ? \'w-6 h-6\' : \'w-5 h-5\'"', $render);
     }
