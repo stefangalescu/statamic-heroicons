@@ -47,5 +47,8 @@ jobs:
           composer require "laravel/framework:${{ matrix.framework }}" "statamic/cms:${{ matrix.statamic }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer install --no-interaction
 
+      - name: Run Pint
+        run: composer lint -- --test
+
       - name: Run PHPUnit
         run: composer test
