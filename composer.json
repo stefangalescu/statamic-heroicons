@@ -24,7 +24,7 @@
         }
     },
     "require": {
-        "php": "^7.4 || ^8.0 || ^8.1",
+        "php": "^8.0 || ^8.1",
         "blade-ui-kit/blade-heroicons": "^2.1",
         "statamic/cms": "3.3.*"
     },
