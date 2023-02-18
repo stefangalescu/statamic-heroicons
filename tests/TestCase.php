@@ -15,10 +15,10 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app)
     {
         return [
+            BladeHeroiconsServiceProvider::class,
+            BladeIconsServiceProvider::class,
             StatamicServiceProvider::class,
             ServiceProvider::class,
-            BladeIconsServiceProvider::class,
-            BladeHeroiconsServiceProvider::class,
         ];
     }
 
