@@ -6,6 +6,8 @@ on:
       - main
       - '*.x'
   pull_request:
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   tests:
@@ -37,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "statamic/cms:${{ matrix.statamic }}" --prefer-dist --no-interaction --no-update
-          composer install --prefer-dist --no-interaction
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Lint
         run: composer lint -- --test
