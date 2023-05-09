@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1 - 2023-05-09
+
+- Add support for Statamic 4
+
 ## v2.0 - 2023-02-18
 
 - Upgrade `blade-ui-kit/blade-heroicons` dependency to version `2.1`
