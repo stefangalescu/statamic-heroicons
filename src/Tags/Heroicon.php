@@ -13,7 +13,10 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): string
+    /**
+     * @throws \InvalidArgumentException
+     */
+    private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): string|null
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
@@ -21,10 +24,19 @@ class Heroicon extends Tags
             return $key.'='.'"'.$parsedValue.'"';
         })->join(' ');
 
-        return Blade::render('<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />');
+        try {
+            return Blade::render('<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />');
+        } catch (\Throwable $e) {
+            if (config('statamic.heroicons.throw_on_invalid_icon')) {
+                throw $e;
+            } else {
+                report($e);
+                return null;
+            }
+        }
     }
 
-    private function render(string $variant = null, string|null $icon = null): string
+    private function render(string $variant = null, string|null $icon = null): string|null
     {
         $variant = $variant ?? Str::lower($this->params->get('variant'));
         $icon = $icon ?? Str::lower($this->params->get('icon'));
@@ -37,7 +49,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon }} tag.
      */
-    public function index(): string
+    public function index(): string|null
     {
         return $this->render();
     }
@@ -45,7 +57,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:mini }} tag.
      */
-    public function mini(): string
+    public function mini(): string|null
     {
         return $this->render('mini');
     }
@@ -53,7 +65,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:outline }} tag.
      */
-    public function outline(): string
+    public function outline(): string|null
     {
         return $this->render('outline');
     }
@@ -61,7 +73,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:solid }} tag.
      */
-    public function solid(): string
+    public function solid(): string|null
     {
         return $this->render('solid');
     }
@@ -69,7 +81,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:{variant}:{icon} }} tag.
      */
-    public function wildcard(string $tag): string
+    public function wildcard(string $tag): string|null
     {
         [$variant, $icon] = Str::of($tag)->split('/:/')->toArray();
         $icon = Str::kebab($icon);
