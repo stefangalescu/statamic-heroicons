@@ -4,6 +4,8 @@ namespace StefanGalescu\Heroicons\Tests;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertStringContainsString;
+
+use Illuminate\Support\Facades\Log;
 use Statamic\Statamic;
 
 class HeroiconTest extends TestCase
@@ -74,5 +76,29 @@ class HeroiconTest extends TestCase
         $render = $this->render('outline', 'bars-3', ['x-bind:class' => "true ? 'w-6 h-6' : 'w-5 h-5'"]);
 
         assertStringContainsString('x-bind:class="true ? \'w-6 h-6\' : \'w-5 h-5\'"', $render);
+    }
+
+    /** @test */
+    public function will_throw_when_icon_name_is_invalid()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $render = $this->render('outline', 'invalid-icon-name');
+    }
+
+    /** @test */
+    public function will_report_when_icon_name_is_invalid()
+    {
+        config()->set('statamic.heroicons.throw_on_invalid_icon', false);
+
+        $icon = 'invalid-icon-name';
+
+        Log::shouldReceive('error')
+            ->once()
+            ->withArgs(function ($message) use ($icon) {
+                return strpos($message, 'Unable to locate a class or view for component [heroicon-o-'.$icon.']') !== false;
+            });
+
+        $render = $this->render('outline', $icon);
     }
 }
