@@ -31,6 +31,7 @@ class Heroicon extends Tags
                 throw $e;
             } else {
                 report($e);
+
                 return null;
             }
         }

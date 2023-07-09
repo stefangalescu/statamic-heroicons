@@ -2,10 +2,9 @@
 
 namespace StefanGalescu\Heroicons\Tests;
 
+use Illuminate\Support\Facades\Log;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertStringContainsString;
-
-use Illuminate\Support\Facades\Log;
 use Statamic\Statamic;
 
 class HeroiconTest extends TestCase
