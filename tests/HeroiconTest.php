@@ -2,8 +2,8 @@
 
 namespace StefanGalescu\Heroicons\Tests;
 
-use Illuminate\Support\Facades\Log;
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNull;
 use function PHPUnit\Framework\assertStringContainsString;
 use Statamic\Statamic;
 
@@ -78,26 +78,10 @@ class HeroiconTest extends TestCase
     }
 
     /** @test */
-    public function will_throw_when_icon_name_is_invalid()
+    public function will_not_throw_when_icon_name_is_invalid()
     {
-        $this->expectException(\InvalidArgumentException::class);
-
         $render = $this->render('outline', 'invalid-icon-name');
-    }
 
-    /** @test */
-    public function will_report_when_icon_name_is_invalid()
-    {
-        config()->set('statamic.heroicons.throw_on_invalid_icon', false);
-
-        $icon = 'invalid-icon-name';
-
-        Log::shouldReceive('error')
-            ->once()
-            ->withArgs(function ($message) use ($icon) {
-                return strpos($message, 'Unable to locate a class or view for component [heroicon-o-'.$icon.']') !== false;
-            });
-
-        $render = $this->render('outline', $icon);
+        assertNull($render);
     }
 }
