@@ -27,13 +27,7 @@ class Heroicon extends Tags
         try {
             return Blade::render('<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />');
         } catch (\Throwable $e) {
-            if (config('statamic.heroicons.throw_on_invalid_icon')) {
-                throw $e;
-            } else {
-                report($e);
-
-                return null;
-            }
+            return null;
         }
     }
 
