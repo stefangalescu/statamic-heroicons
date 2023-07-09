@@ -13,9 +13,6 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    /**
-     * @throws \InvalidArgumentException
-     */
     private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): string|null
     {
         $attrsString = $attrs->map(function ($value, $key) {
