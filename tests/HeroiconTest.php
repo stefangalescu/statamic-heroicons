@@ -3,6 +3,7 @@
 namespace StefanGalescu\Heroicons\Tests;
 
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNull;
 use function PHPUnit\Framework\assertStringContainsString;
 use Statamic\Statamic;
 
@@ -74,5 +75,13 @@ class HeroiconTest extends TestCase
         $render = $this->render('outline', 'bars-3', ['x-bind:class' => "true ? 'w-6 h-6' : 'w-5 h-5'"]);
 
         assertStringContainsString('x-bind:class="true ? \'w-6 h-6\' : \'w-5 h-5\'"', $render);
+    }
+
+    /** @test */
+    public function will_not_throw_when_icon_name_is_invalid()
+    {
+        $render = $this->render('outline', 'invalid-icon-name');
+
+        assertNull($render);
     }
 }

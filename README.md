@@ -26,7 +26,7 @@ Apart from the requirements above, it is required that you use Statamic's new Ru
 
 First, require `statamic-heroicons` as a Composer dependency:
 
-```
+```shell
 composer require stefangalescu/statamic-heroicons
 ```
 
