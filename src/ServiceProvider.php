@@ -11,6 +11,11 @@ class ServiceProvider extends AddonServiceProvider
         \StefanGalescu\Heroicons\Tags\Heroicon::class,
     ];
 
+    public function register()
+    {
+        $this->registerAddonConfig();
+    }
+
     public function bootAddon()
     {
         $antlersEngine = config('statamic.antlers.version');
@@ -18,5 +23,16 @@ class ServiceProvider extends AddonServiceProvider
         if ($antlersEngine !== 'runtime') {
             throw new IncorrectEngineException();
         }
+    }
+
+    protected function registerAddonConfig()
+    {
+        $this->mergeConfigFrom(__DIR__.'/../config/heroicons.php', 'statamic.heroicons');
+
+        $this->publishes([
+            __DIR__.'/../config/heroicons.php' => config_path('statamic/heroicons.php'),
+        ], 'statamic-heroicons-config');
+
+        return $this;
     }
 }
