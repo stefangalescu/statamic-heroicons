@@ -26,11 +26,33 @@ Apart from the requirements above, it is required that you use Statamic's new Ru
 
 First, require `statamic-heroicons` as a Composer dependency:
 
-```
+```shell
 composer require stefangalescu/statamic-heroicons
 ```
 
+If you need, you can publish the package assets:
+
+```shell
+php artisan vendor:publish --provider="StefanGalescu\Heroicons\ServiceProvider"
+```
+
 If you need additional options, you can publish the [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons) config. Make sure to also look into the [icon caching](https://github.com/blade-ui-kit/blade-icons#caching) feature provided by [`blade-ui-kit/blade-heroicons`](https://github.com/blade-ui-kit/blade-heroicons).
+
+### Configuration
+
+By default, the Heroicons tags will throw an `InvalidArgumentException` when attempting to render an invalid icon. You can change this behavior by changing the default config value:
+
+```php
+// config/statamic/heroicons.php
+return [
+  /**
+   * Whether to throw an exception when an invalid icon name is used.
+   */
+  'throw_on_invalid_icon' => false,
+];
+```
+
+This will instead report the error in the logs and render nothing, allowing your code to continue executing.
 
 ### Usage
 
