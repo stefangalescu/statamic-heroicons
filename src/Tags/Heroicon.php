@@ -13,7 +13,7 @@ class Heroicon extends Tags
 {
     protected static $handle = 'heroicon';
 
-    private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): string|null
+    private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): ?string
     {
         $attrsString = $attrs->map(function ($value, $key) {
             $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
@@ -28,7 +28,7 @@ class Heroicon extends Tags
         }
     }
 
-    private function render(string $variant = null, string|null $icon = null): string|null
+    private function render(?string $variant = null, ?string $icon = null): ?string
     {
         $variant = $variant ?? Str::lower($this->params->get('variant'));
         $icon = $icon ?? Str::lower($this->params->get('icon'));
@@ -41,7 +41,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon }} tag.
      */
-    public function index(): string|null
+    public function index(): ?string
     {
         return $this->render();
     }
@@ -49,7 +49,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:mini }} tag.
      */
-    public function mini(): string|null
+    public function mini(): ?string
     {
         return $this->render('mini');
     }
@@ -57,7 +57,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:outline }} tag.
      */
-    public function outline(): string|null
+    public function outline(): ?string
     {
         return $this->render('outline');
     }
@@ -65,7 +65,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:solid }} tag.
      */
-    public function solid(): string|null
+    public function solid(): ?string
     {
         return $this->render('solid');
     }
@@ -73,7 +73,7 @@ class Heroicon extends Tags
     /**
      * The {{ heroicon:{variant}:{icon} }} tag.
      */
-    public function wildcard(string $tag): string|null
+    public function wildcard(string $tag): ?string
     {
         [$variant, $icon] = Str::of($tag)->split('/:/')->toArray();
         $icon = Str::kebab($icon);
