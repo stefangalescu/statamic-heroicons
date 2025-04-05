@@ -15,8 +15,8 @@ class ServiceProvider extends AddonServiceProvider
     {
         $antlersEngine = config('statamic.antlers.version');
 
-        if ($antlersEngine !== 'runtime') {
-            throw new IncorrectEngineException();
+        if (! is_null($antlersEngine) && $antlersEngine !== 'runtime') {
+            throw new IncorrectEngineException;
         }
     }
 }
