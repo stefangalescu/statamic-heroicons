@@ -19,11 +19,4 @@ abstract class TestCase extends AddonTestCase
 
         return $providers;
     }
-
-    protected function resolveApplicationConfiguration($app)
-    {
-        parent::resolveApplicationConfiguration($app);
-
-        $app['config']->set('statamic.antlers.version', 'runtime');
-    }
 }
