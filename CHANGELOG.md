@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1 - 2025-04-05
+
+- Add support for PHP 8.4
+- Updated blade-ui-kit/blade-heroicons to 2.6
+- Fix issue with Statamic 5 due to missing runtime configuration
+- Remove custom exception solution
+- Remove facade/ignition-contracts dependency
+
 ## v3.0 - 2024-05-17
 
 - Add support for Statamic 5
