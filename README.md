@@ -15,8 +15,8 @@ If you're looking to use Heroicons v1, please use the v1 version of the package.
 ## Requirements
 
 - PHP 8.1 or higher
-- Laravel 9.0 or higher
-- Statamic 3.3 or higher
+- Laravel 10.0 or higher
+- Statamic 3.4 or higher
 
 Apart from the requirements above, it is required that you use Statamic's new Runtime Antlers engine. Read more about it and how to enable it in [Statamic's official documentation](https://statamic.dev/new-antlers-parser#about).
 

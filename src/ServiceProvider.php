@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace StefanGalescu\Heroicons;
 
 use Statamic\Providers\AddonServiceProvider;

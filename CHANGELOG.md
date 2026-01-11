@@ -1,10 +1,10 @@
 # Changelog
 
-## v3.2 - 2026-01-11
+## v3.2 (2026-01-11)
 
 - Add support for PHP 8.5
 
-## v3.1 - 2025-04-05
+## v3.1 (2025-04-05)
 
 - Add support for PHP 8.4
 - Updated blade-ui-kit/blade-heroicons to 2.6
@@ -12,34 +12,34 @@
 - Remove custom exception solution
 - Remove facade/ignition-contracts dependency
 
-## v3.0 - 2024-05-17
+## v3.0 (2024-05-17)
 
 - Add support for Statamic 5
 - Upgrade `blade-ui-kit/blade-heroicons` to `2.3`
 - Upgrade to Heroicons v2.1
 
-## v2.1 - 2023-05-09
+## v2.1 (2023-05-09)
 
 - Add support for Statamic 4
 
-## v2.0 - 2023-02-18
+## v2.0 (2023-02-18)
 
 - Upgrade `blade-ui-kit/blade-heroicons` dependency to version `2.1`
 - Drop PHP 7.4 and Laravel 8 support
 - Add `heroicon:mini` tag (to support the new Heroicons v2 mini set containing 20x20 solid fill icons)
 
-## v1.1 - 2023-02-18
+## v1.1 (2023-02-18)
 
 - Upgrade `blade-ui-kit/blade-heroicons` dependency to version `1.4`
 
-## v1.0.2 - 2022-06-20
+## v1.0.2 (2022-06-20)
 
 - Patch previously empty release
 
-## v1.0.1 - 2022-06-20
+## v1.0.1 (2022-06-20)
 
 - Remove config file
 
-## v1.0.0 - 2022-06-20
+## v1.0.0 (2022-06-20)
 
 - Initial release
