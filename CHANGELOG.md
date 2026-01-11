@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2 - 2026-01-11
+
+- Add support for PHP 8.5
+
 ## v3.1 - 2025-04-05
 
 - Add support for PHP 8.4
