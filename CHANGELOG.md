@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3 (2026-02-12)
+
+- Add support for Statamic 6
+- Add support for Orchestra Testbench 10
+- Harden Heroicon tag rendering when variant/icon input is missing
+
 ## v3.2 (2026-01-11)
 
 - Add support for PHP 8.5

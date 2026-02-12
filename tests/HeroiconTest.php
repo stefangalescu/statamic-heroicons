@@ -115,6 +115,13 @@ class HeroiconTest extends TestCase
         assertStringContainsString('x-bind:class="true ? \'w-6 h-6\' : \'w-5 h-5\'"', $render);
     }
 
+    public function test_escapes_double_quotes_in_attribute_values(): void
+    {
+        $render = $this->render('outline', 'bars-3', ['title' => 'Main "menu"']);
+
+        assertStringContainsString('title="Main &quot;menu&quot;"', $render);
+    }
+
     public function test_will_not_throw_when_icon_name_is_invalid(): void
     {
         $render = $this->render('outline', 'invalid-icon-name');
@@ -125,6 +132,27 @@ class HeroiconTest extends TestCase
     public function test_wildcard_returns_null_for_invalid_icon(): void
     {
         $render = $this->renderWildcard('outline:invalid-icon-name');
+
+        assertNull($render);
+    }
+
+    public function test_returns_null_when_variant_is_missing(): void
+    {
+        $render = Statamic::tag('heroicon')->params(['icon' => 'bars-3'])->fetch();
+
+        assertNull($render);
+    }
+
+    public function test_returns_null_when_icon_is_missing(): void
+    {
+        $render = Statamic::tag('heroicon')->params(['variant' => 'outline'])->fetch();
+
+        assertNull($render);
+    }
+
+    public function test_wildcard_with_unknown_variant_and_icon_param_returns_null(): void
+    {
+        $render = $this->renderWildcard('future', ['icon' => 'bars-3']);
 
         assertNull($render);
     }
