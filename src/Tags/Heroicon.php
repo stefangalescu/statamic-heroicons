@@ -42,7 +42,7 @@ class Heroicon extends Tags
     private function render(?string $variant = null, ?string $icon = null): ?string
     {
         $variant = Str::lower((string) ($variant ?? $this->params->get('variant')));
-        $icon = Str::kebab((string) ($icon ?? $this->params->get('icon')));
+        $icon = Str::lower((string) ($icon ?? $this->params->get('icon')));
 
         if ($variant === '' || $icon === '') {
             return null;
@@ -91,8 +91,7 @@ class Heroicon extends Tags
     public function wildcard(string $tag): ?string
     {
         [$variant, $icon] = array_pad(explode(':', $tag, 2), 2, null);
-        $icon = $icon ?? $this->params->get('icon');
 
-        return $this->render($variant, $icon);
+        return $this->render($variant, $icon === null ? null : Str::kebab($icon));
     }
 }

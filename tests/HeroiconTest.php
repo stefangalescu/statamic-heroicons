@@ -60,6 +60,14 @@ class HeroiconTest extends TestCase
         assertEquals(trim($render), trim($svg));
     }
 
+    public function test_can_render_heroicon_using_uppercase_icon_parameter(): void
+    {
+        $render = $this->render('outline', 'ARROW-LEFT');
+        $svg = $this->getSvgAsset('outline', 'arrow-left');
+
+        assertEquals(trim($svg), trim($render ?? ''));
+    }
+
     public function test_can_render_heroicon_using_outline_shorthand(): void
     {
         $render = $this->renderWildcard('outline', ['icon' => 'bars-3']);
@@ -82,6 +90,14 @@ class HeroiconTest extends TestCase
         $svg = $this->getSvgAsset('mini', 'bars-3');
 
         assertEquals(trim($render), trim($svg));
+    }
+
+    public function test_can_render_heroicon_using_shorthand_with_uppercase_icon_parameter(): void
+    {
+        $render = $this->renderWildcard('solid', ['icon' => 'BARS-3']);
+        $svg = $this->getSvgAsset('solid', 'bars-3');
+
+        assertEquals(trim($svg), trim($render ?? ''));
     }
 
     public function test_can_render_heroicon_using_wildcard_syntax(): void

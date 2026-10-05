@@ -3,7 +3,8 @@
 ## v3.3 (2026-02-12)
 
 - Add support for Statamic 6
-- Add support for Orchestra Testbench 10
+- Test Statamic 6 with Laravel 12 on PHP 8.2–8.5 in CI
+- Preserve case-insensitive icon parameters and camel-case wildcard names
 - Harden Heroicon tag rendering when variant/icon input is missing
 
 ## v3.2 (2026-01-11)
