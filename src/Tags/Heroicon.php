@@ -15,14 +15,25 @@ class Heroicon extends Tags
 
     private function renderBladeToHtml(string $variant, string $icon, Collection $attrs): ?string
     {
-        $attrsString = $attrs->map(function ($value, $key) {
-            $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
+        $variantPrefix = Str::substr($variant, 0, 1);
 
-            return $key.'='.'"'.$parsedValue.'"';
+        if ($variantPrefix === '') {
+            return null;
+        }
+
+        $attrsString = $attrs->map(function ($value, $key) {
+            if (is_int($key)) {
+                return (string) $value;
+            }
+
+            $parsedValue = gettype($value) === 'string' ? $value : var_export($value, true);
+            $escapedValue = htmlspecialchars($parsedValue, ENT_COMPAT, 'UTF-8', false);
+
+            return $key.'='.'"'.$escapedValue.'"';
         })->join(' ');
 
         try {
-            return Blade::render('<x-heroicon-'.$variant[0].'-'.$icon.' '.$attrsString.' />');
+            return Blade::render('<x-heroicon-'.$variantPrefix.'-'.$icon.' '.$attrsString.' />');
         } catch (\Throwable $e) {
             return null;
         }
@@ -30,8 +41,12 @@ class Heroicon extends Tags
 
     private function render(?string $variant = null, ?string $icon = null): ?string
     {
-        $variant = $variant ?? Str::lower($this->params->get('variant'));
-        $icon = $icon ?? Str::lower($this->params->get('icon'));
+        $variant = Str::lower((string) ($variant ?? $this->params->get('variant')));
+        $icon = Str::lower((string) ($icon ?? $this->params->get('icon')));
+
+        if ($variant === '' || $icon === '') {
+            return null;
+        }
 
         $attrs = $this->params->except(['as', 'scope', 'variant', 'icon']);
 
@@ -75,9 +90,8 @@ class Heroicon extends Tags
      */
     public function wildcard(string $tag): ?string
     {
-        [$variant, $icon] = Str::of($tag)->split('/:/')->toArray();
-        $icon = Str::kebab($icon);
+        [$variant, $icon] = array_pad(explode(':', $tag, 2), 2, null);
 
-        return $this->render($variant, $icon);
+        return $this->render($variant, $icon === null ? null : Str::kebab($icon));
     }
 }
